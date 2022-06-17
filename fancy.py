@@ -102,3 +102,7 @@ def gotham(path):
     b_adjusted = channel_adjust(b, [0, 0.047, 0.118, 0.251, 0.318, 0.392, 0.42, 0.439, 0.475, 0.561, 0.58, 0.627, 0.671, 0.733, 0.847, 0.925, 1]) 
     gotham = np.stack([r, g, b_adjusted], axis=2)
     return gotham
+
+
+def xau(path):
+    return
