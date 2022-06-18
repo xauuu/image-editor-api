@@ -3,9 +3,7 @@ from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import point
 import filter
-import segment
 import restoration
-import fancy
 from pydantic import BaseModel
 from typing import Optional
 from utils import str_id, export_image
@@ -71,46 +69,6 @@ async def gaussian_blur(image: Image):
     name = str_id()+image.name
     export_image(img, "exports/"+name)
     return {"filename": name}
-
-
-@app.post("/filter/laplacian")
-async def laplacian(image: Image):
-    img = filter.laplacian(image.uri, image.k)
-    name = str_id()+image.name
-    export_image(img, "exports/"+name)
-    return {"filename": name}
-
-
-@app.post("/filter/sobel")
-async def sobel(image: Image):
-    img = filter.sobel(image.uri, image.k)
-    name = str_id()+image.name
-    export_image(img, "exports/"+name)
-    return {"filename": name}
-
-
-@app.post("/segment/kmean")
-async def kmean(image: Image):
-    img = segment.kmean(image.uri, image.k)
-    name = str_id()+image.name
-    export_image(img, "exports/"+name)
-    return {"filename": name}
-
-
-# @app.post("/segment/graph-cut")
-# async def graph_cut(image: Image):
-#     img = segment.graph_cut(image.uri)
-#     name = str_id()+image.name
-#     export_image(img, "exports/"+name)
-#     return {"filename": name}
-
-
-# @app.post("/segment/meanshift")
-# async def meanshift(image: Image):
-#     img = segment.mean_shift(image.uri)
-#     name = str_id()+image.name
-#     export_image(img, "exports/"+name)
-#     return {"filename": name}
 
 
 @app.post("/restoration/tb-so-hoc")
@@ -201,41 +159,87 @@ async def loc_tuong_thich(image: Image):
     return {"filename": name}
 
 
-@app.post("/fancy/warming")
+@app.post("/filter/greyscale")
+async def greyscale(image: Image):
+    img = filter.greyscale(image.uri)
+    name = str_id()+image.name
+    export_image(img, "exports/"+name)
+    return {"filename": name}
+
+@app.post("/filter/warming")
 async def Warming(image: Image):
-    img = fancy._warming(image.uri)
+    img = filter.warming(image.uri)
     name = str_id()+image.name
     export_image(img, "exports/"+name)
     return {"filename": name}
 
 
-@app.post("/fancy/cooling")
+@app.post("/filter/cooling")
 async def Cooling(image: Image):
-    img = fancy._cooling(image.uri)
+    img = filter.cooling(image.uri)
     name = str_id()+image.name
     export_image(img, "exports/"+name)
     return {"filename": name}
 
 
-@app.post("/fancy/moon")
+@app.post("/filter/moon")
 async def Moon(image: Image):
-    img = fancy._moon(image.uri)
+    img = filter.moon(image.uri)
     name = str_id()+image.name
     export_image(img, "exports/"+name)
     return {"filename": name}
 
 
-@app.post("/fancy/cartoon")
+@app.post("/filter/cartoon")
 async def Cartoon(image: Image):
-    img = fancy._cartoon(image.uri)
+    img = filter.cartoon(image.uri)
     name = str_id()+image.name
     export_image(img, "exports/"+name)
     return {"filename": name}
 
 
-@app.post("/fancy/pencil-sketch-grey")
+@app.post("/filter/pencil-sketch-grey")
 async def Sketch_pencil_using_blending(image: Image):
-    img = fancy._sketch_pencil_using_blending(image.uri)
+    img = filter.sketch_pencil_using_blending(image.uri)
+    name = str_id()+image.name
+    export_image(img, "exports/"+name)
+    return {"filename": name}
+
+@app.post("/filter/pencil-sketch-color")
+async def pencil_sketch_col(image: Image):
+    img = filter.pencil_sketch_col(image.uri)
+    name = str_id()+image.name
+    export_image(img, "exports/"+name)
+    return {"filename": name}
+
+
+@app.post("/filter/pencil-sketch-color")
+async def pencil_sketch_col(image: Image):
+    img = filter.pencil_sketch_col(image.uri)
+    name = str_id()+image.name
+    export_image(img, "exports/"+name)
+    return {"filename": name}
+
+
+@app.post("/filter/sepia")
+async def sepia(image: Image):
+    img = filter.sepia(image.uri)
+    name = str_id()+image.name
+    export_image(img, "exports/"+name)
+    return {"filename": name}
+
+
+@app.post("/filter/HDR")
+async def HDR(image: Image):
+    img = filter.HDR(image.uri)
+    name = str_id()+image.name
+    export_image(img, "exports/"+name)
+    return {"filename": name}
+
+
+@app.post("/filter/vintage")
+async def vintage(image: Image):
+    img = filter.vintage(image.uri)
     name = str_id()+image.name
     export_image(img, "exports/"+name)
     return {"filename": name}

@@ -9,8 +9,8 @@ def convert_to_gray(img):
 
 def reverse_image(path):
     img = readb64(path)
-    igray = convert_to_gray(img)
-    return 255 - igray
+    # igray = convert_to_gray(img)
+    return 255 - img
 
 
 def threshold(path, a, b):
